@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">graceful-seahorse-dash</string>
+    <string name="title_activity_main">graceful-seahorse-dash</string>
+    <string name="package_name">com.example.gracefulseahorsedash</string>
+    <string name="custom_url_scheme">com.example.gracefulseahorsedash</string>
+</resources>
