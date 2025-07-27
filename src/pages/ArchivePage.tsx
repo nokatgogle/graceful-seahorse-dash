@@ -7,13 +7,23 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format, isToday } from "date-fns";
-import { CalendarIcon, FileTextIcon, UploadIcon, SearchIcon, Trash2Icon, FolderArchiveIcon, EyeIcon } from "lucide-react";
+import { 
+  CalendarIcon, 
+  FileTextIcon, 
+  UploadIcon, 
+  SearchIcon, 
+  Trash2Icon, 
+  FolderArchiveIcon, 
+  EyeIcon,
+  ArrowDownToLine, // New import for incoming documents icon
+  ArrowUpFromLine // New import for outgoing documents icon
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { showSuccess, showError } from "@/utils/toast";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
-import { Toaster } from "@/components/ui/toaster"; // Assuming this is for shadcn/ui toast
+// import { Toaster } from "@/components/ui/toaster"; // This import is not needed here as Toaster is in App.tsx
 
 interface Document {
   id: string;
@@ -128,12 +138,12 @@ const ArchivePage = () => {
             <CardContent className="text-3xl font-bold p-0">{totalDocuments}</CardContent>
           </Card>
           <Card className="text-center p-4 flex flex-col items-center justify-center">
-            <FileTextIcon className="h-8 w-8 text-green-500 mb-2" />
+            <ArrowDownToLine className="h-8 w-8 text-green-500 mb-2" /> {/* Changed icon */}
             <CardTitle className="text-lg">المستندات الواردة</CardTitle>
             <CardContent className="text-3xl font-bold p-0">{incomingDocuments}</CardContent>
           </Card>
           <Card className="text-center p-4 flex flex-col items-center justify-center">
-            <UploadIcon className="h-8 w-8 text-orange-500 mb-2" />
+            <ArrowUpFromLine className="h-8 w-8 text-orange-500 mb-2" /> {/* Changed icon */}
             <CardTitle className="text-lg">المستندات الصادرة</CardTitle>
             <CardContent className="text-3xl font-bold p-0">{outgoingDocuments}</CardContent>
           </Card>
@@ -196,7 +206,7 @@ const ArchivePage = () => {
               </div>
               <div>
                 <Label htmlFor="docDate" className="mb-2 block text-right">تاريخ الأرشفة</Label>
-                <Popover dir="rtl"> {/* Ensure Popover opens RTL */}
+                <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       variant={"outline"}
@@ -209,7 +219,7 @@ const ArchivePage = () => {
                       <CalendarIcon className="mr-2 h-4 w-4" />
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="end">
+                  <PopoverContent className="w-auto p-0" align="end" dir="rtl"> {/* Moved dir="rtl" here */}
                     <Calendar
                       mode="single"
                       selected={newDocumentDate}
@@ -253,7 +263,7 @@ const ArchivePage = () => {
               </div>
               <div>
                 <Label htmlFor="searchDate" className="mb-2 block text-right">البحث بالتاريخ</Label>
-                <Popover dir="rtl"> {/* Ensure Popover opens RTL */}
+                <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       variant={"outline"}
@@ -266,7 +276,7 @@ const ArchivePage = () => {
                       <CalendarIcon className="mr-2 h-4 w-4" />
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="end">
+                  <PopoverContent className="w-auto p-0" align="end" dir="rtl"> {/* Moved dir="rtl" here */}
                     <Calendar
                       mode="single"
                       selected={searchDate}
